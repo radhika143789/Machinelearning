@@ -1,1 +1,42 @@
+import cv2
+import matplotlib.pyplot as plt
 
+# Load pre-trained models
+face_net = cv2.dnn.readNet("opencv_face_detector_uint8.pb", "opencv_face_detector.pbtxt")
+age_net = cv2.dnn.readNet("age_net.caffemodel", "age_deploy.prototxt")
+gender_net = cv2.dnn.readNet("gender_net.caffemodel", "gender_deploy.prototxt")
+
+# Define age and gender categories
+age_categories = ['0-2', '4-6', '8-12', '15-20', '25-32', '38-43', '48-53', '60-100']
+gender_categories = ['Male', 'Female']
+
+# Read and preprocess the image
+image = cv2.imread('image.jpg')
+image = cv2.resize(image, (720, 640))
+
+# Detect faces
+blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], True, False)
+face_net.setInput(blob)
+detections = face_net.forward()
+
+# Create bounding boxes around detected faces
+face_boxes = []
+for i in range(detections.shape[2]):
+    confidence = detections[0, 0, i, 2]
+    if confidence > 0.7:
+        x1 = int(detections[0, 0, i, 3] * image.shape[1])
+        y1 = int(detections[0, 0, i, 4] * image.shape[0])
+        x2 = int(detections[0, 0, i, 5] * image.shape[1])
+        y2 = int(detections[0, 0, i, 6] * image.shape[0])
+        face_boxes.append([x1, y1, x2, y2])
+        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), int(round(image.shape[0] / 150)), 8)
+
+# Implement age and gender detection
+for face_box in face_boxes:
+    face = image[max(0, face_box[1] - 15):face_box[3], max(0, face_box[0] - 15):face_box[2]]
+    # Use age_net and gender_net to predict age and gender
+
+# Display the results
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
