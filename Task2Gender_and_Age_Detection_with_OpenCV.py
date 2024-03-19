@@ -4,7 +4,6 @@ import cv2
 import math
 import time
 from google.colab.patches import cv2_imshow
-
 def getFaceBox(net, frame, conf_threshold=0.7):
     frameOpencvDnn = frame.copy()
     frameHeight = frameOpencvDnn.shape[0]
