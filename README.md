@@ -10,6 +10,7 @@ Develop a voice command recognition system that translates
 
 spoken commands into actionable tasks.
 
+
 Task 2: Gender and Age Detection with OpenCV
 
 To develop a computer vision application using OpenCV that can accurately 
@@ -19,6 +20,8 @@ predict the gender and age of individuals from images or video streams. The
 model should be able to detect faces in the input data, classify gender 
 
 (male or female), and estimate the age range of the person.
+
+
 Task 3: Parkinson’s Disease Prediction 
 
 The goal of this project is to develop a predictive model that can accurately 
@@ -32,6 +35,8 @@ significantly improve patient outcomes and enable timely intervention. The
 project aims to leverage machine learning techniques to create a reliable 
 
 and efficient prediction model.
+
+
 Task 4: Stock Price Prediction
 
 Interns working on cryptocurrency or stock price prediction projects should 
