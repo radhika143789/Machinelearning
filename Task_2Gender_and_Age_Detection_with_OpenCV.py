@@ -1,4 +1,4 @@
-# Import required modules
+
 import mtcnn
 import cv2
 import math
