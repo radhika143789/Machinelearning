@@ -1,5 +1,5 @@
-# Techstraver-Machinelearning
-The TechStraverinternship program.
+Machinelearning
+
 
 Task list
 
